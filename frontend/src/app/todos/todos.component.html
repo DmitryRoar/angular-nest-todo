@@ -1,5 +1,9 @@
-<ul *ngFor="let x of todos">
-  <li>
-    {{x.title}}
-  </li>
-</ul>
+<div class="wrap-todos">
+  <ul>
+    <li *ngFor="let todo of todos">
+      {{todo.title}}
+
+      <strong>{{todo.date | date:'medium':null:'ru'}}</strong>
+    </li>
+  </ul>
+</div>
