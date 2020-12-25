@@ -4,11 +4,19 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "client":  "npm run start --prefix frontend",
-    "server": "npm run start --prefix backend",
-    "start": "concurrently \"npm run client\" \"npm run server\""
+    "start:client": "npm run start --prefix frontend",
+    "start:server": "npm run start --prefix backend",
+    "build:client": "npm run build --prefix frontend",
+    "build:server": "npm run build --prefix backend",
+    "build": "concurrently \"npm run build:client\" \"npm run build:server\"",
+    "start": "concurrently \"npm run start:client\" \"npm run start:server\""
   },
-  "keywords": ["angular", "nest", "typescript", "rxjs"],
+  "keywords": [
+    "angular",
+    "nest",
+    "typescript",
+    "rxjs"
+  ],
   "author": "",
   "license": "ISC",
   "dependencies": {
