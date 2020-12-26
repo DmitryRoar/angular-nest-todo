@@ -4,10 +4,14 @@
       <form (ngSubmit)="onSubmit()" [formGroup]="form">
         <input type="text" placeholder="todo" formControlName="title">
 
-        <button type="submit" [disabled]="btnDisabled">send</button>
+        <button type="submit">send</button>
       </form>
     </div>
 
-    <app-todos [todos]="todos"></app-todos>
+    <app-todos [todos]="todos" *ngIf="loading; else loader"></app-todos>
+
+    <ng-template #loader>
+      <app-loader></app-loader>
+    </ng-template>
   </div>
 </div>

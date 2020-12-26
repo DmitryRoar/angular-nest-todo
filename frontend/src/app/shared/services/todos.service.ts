@@ -1,10 +1,11 @@
 import {Injectable} from '@angular/core'
 import {HttpClient} from '@angular/common/http'
 import {Observable} from 'rxjs'
-import {ITodos} from './shared/interfaces'
+
+import {ITodos, ITodosError} from '../interfaces'
 
 @Injectable({providedIn: 'root'})
-export class AppService {
+export class TodosService {
   constructor(private readonly http: HttpClient) {
   }
 
@@ -12,7 +13,7 @@ export class AppService {
     return this.http.get<ITodos[] | []>(`/api/todos`)
   }
 
-  create(todo: ITodos): Observable<ITodos> {
+  create(todo: ITodos): Observable<ITodos | ITodosError> {
     return this.http.post<ITodos>(`/api/todos`, todo)
   }
 }

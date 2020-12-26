@@ -3,3 +3,7 @@ export interface ITodos {
   date: string
   confirm: boolean
 }
+
+export interface ITodosError {
+  message: string
+}

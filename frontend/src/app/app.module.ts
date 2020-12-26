@@ -5,15 +5,18 @@ import {NgModule} from '@angular/core'
 
 import {AppComponent} from './app.component'
 import {TodosComponent} from './todos/todos.component'
+import {LoaderComponent} from './shared/components/loader/loader.component'
 
 import {registerLocaleData} from '@angular/common'
 import ruLocale from '@angular/common/locales/ru'
+import {TodosService} from "./shared/services/todos.service";
 registerLocaleData(ruLocale)
 
 @NgModule({
   declarations: [
     AppComponent,
-    TodosComponent
+    TodosComponent,
+    LoaderComponent
   ],
   imports: [
     HttpClientModule,
@@ -21,8 +24,7 @@ registerLocaleData(ruLocale)
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [TodosService],
   bootstrap: [AppComponent]
 })
-export class AppModule {
-}
+export class AppModule {}
