@@ -35,10 +35,14 @@ export class AppComponent implements OnInit {
   }
 
   onSubmit(): void {
-    const title = this.form.value.title as string
+    this.btnDisabled = true
+    const title: string = this.form.value.title
 
     if (title) {
       this.btnDisabled = false
+    } else {
+      this.btnDisabled = true
+
     }
 
     const data: ITodos = {
@@ -46,11 +50,8 @@ export class AppComponent implements OnInit {
       date: new Date().toJSON(),
       confirm: false
     }
-    this.btnDisabled = true
 
     this.appService.create(data).subscribe(() => {
-    }, () => {
-      this.btnDisabled = false
       this.form.reset()
     }, () => {
       this.btnDisabled = false
