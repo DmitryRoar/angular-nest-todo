@@ -1,17 +1,15 @@
 <app-alert></app-alert>
 
-<div class="wrap">
+<div class="wrap"  [class.test]="theme === 'light'" [class.wrap-light]="theme === 'light'" [class.wrap-dark]="theme === 'dark'">
   <div class="container">
     <div class="form">
       <form (ngSubmit)="onSubmit()" [formGroup]="form">
-        <input type="text" placeholder="todo" formControlName="title">
+        <input type="text" placeholder="Todo" formControlName="title">
 
-        <button type="submit" [disabled]="disabled">send</button>
+        <button type="submit" [disabled]="disabled">Отправить</button>
       </form>
 
-      <div>
-        toggleTheme
-      </div>
+      <app-toggle-theme (temp)="toggleTheme($event)"></app-toggle-theme>
     </div>
 
     <app-todos [todos]="todos" *ngIf="loading; else loader"></app-todos>

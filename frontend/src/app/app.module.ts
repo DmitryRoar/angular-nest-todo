@@ -11,6 +11,7 @@ import {registerLocaleData} from '@angular/common'
 import ruLocale from '@angular/common/locales/ru'
 import {TodosService} from "./shared/services/todos.service";
 import { AlertComponent } from './shared/components/alert/alert.component';
+import { ToggleThemeComponent } from './shared/components/toggle-theme/toggle-theme.component';
 registerLocaleData(ruLocale)
 
 @NgModule({
@@ -18,7 +19,8 @@ registerLocaleData(ruLocale)
     AppComponent,
     TodosComponent,
     LoaderComponent,
-    AlertComponent
+    AlertComponent,
+    ToggleThemeComponent
   ],
   imports: [
     HttpClientModule,

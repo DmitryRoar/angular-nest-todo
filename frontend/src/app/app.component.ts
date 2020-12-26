@@ -13,11 +13,12 @@ import {AlertService} from './shared/services/alert.service'
 })
 export class AppComponent implements OnInit {
   form: FormGroup
+
   todos: ITodos[] | [] = []
 
   loading: boolean
-
   disabled = false
+  theme: string
 
   constructor(
     private readonly todosService: TodosService,
@@ -39,6 +40,10 @@ export class AppComponent implements OnInit {
       this.loading = true
       this.todos = todos
     })
+  }
+
+  toggleTheme(theme) {
+    this.theme = theme
   }
 
   onSubmit(): void {
