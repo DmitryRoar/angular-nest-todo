@@ -1,0 +1,33 @@
+.wrap {
+  position: fixed;
+  top: 50px;
+  right: 40px;
+  max-width: 200px;
+}
+
+.alert {
+  font-family: sans-serif;
+  padding: 0.7rem;
+  margin: 1rem 0;
+  opacity: 0.9;
+  background: #f4f4f4;
+  color: #333;
+  border-radius: 4px;
+  cursor: not-allowed;
+  user-select: none;
+}
+
+.success {
+  background: #28a745;
+  color: #fff;
+}
+
+.danger {
+  color: #fff;
+  background: #dc3545;
+}
+
+.warning {
+  background: #dcd935;
+  color: #fff;
+}

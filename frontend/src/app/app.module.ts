@@ -10,13 +10,15 @@ import {LoaderComponent} from './shared/components/loader/loader.component'
 import {registerLocaleData} from '@angular/common'
 import ruLocale from '@angular/common/locales/ru'
 import {TodosService} from "./shared/services/todos.service";
+import { AlertComponent } from './shared/components/alert/alert.component';
 registerLocaleData(ruLocale)
 
 @NgModule({
   declarations: [
     AppComponent,
     TodosComponent,
-    LoaderComponent
+    LoaderComponent,
+    AlertComponent
   ],
   imports: [
     HttpClientModule,

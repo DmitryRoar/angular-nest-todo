@@ -35,8 +35,8 @@
     <property name="node.js.selected.package.standard" value="" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="preferences.general" />
-    <property name="ts.external.directory.path" value="C:\Users\blaki\Desktop\FED\ANGULAR\angular-nest\frontend\node_modules\typescript\lib" />
+    <property name="settings.editor.selected.configurable" value="preferences.sourceCode.TypeScript" />
+    <property name="ts.external.directory.path" value="C:\Users\s535d\OneDrive\Рабочий стол\FED\ANGULAR\angular-nest\frontend\node_modules\typescript\lib" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -54,6 +54,7 @@
       <workItem from="1608950334708" duration="912000" />
       <workItem from="1608964211196" duration="694000" />
       <workItem from="1608985643953" duration="3965000" />
+      <workItem from="1608992857150" duration="2573000" />
     </task>
     <servers />
   </component>
@@ -71,27 +72,5 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
-  </component>
-  <component name="WindowStateProjectService">
-    <state width="1515" height="204" key="GridCell.Tab.0.bottom" timestamp="1608985723322">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state width="1515" height="204" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1608985723322" />
-    <state width="1515" height="204" key="GridCell.Tab.0.center" timestamp="1608985723321">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state width="1515" height="204" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1608985723321" />
-    <state width="1515" height="204" key="GridCell.Tab.0.left" timestamp="1608985723321">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state width="1515" height="204" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1608985723321" />
-    <state width="1515" height="204" key="GridCell.Tab.0.right" timestamp="1608985723321">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state width="1515" height="204" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1608985723321" />
-    <state x="425" y="187" key="run.anything.popup" timestamp="1608989745742">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="425" y="187" key="run.anything.popup/0.0.1536.824@0.0.1536.824" timestamp="1608989745742" />
   </component>
 </project>

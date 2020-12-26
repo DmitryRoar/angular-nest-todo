@@ -4,6 +4,7 @@ import {FormControl, FormGroup, Validators} from '@angular/forms'
 import {TodosService} from "./shared/services/todos.service";
 
 import {ITodos, ITodosError} from './shared/interfaces'
+import {AlertService} from './shared/services/alert.service'
 
 @Component({
   selector: 'app-root',
@@ -17,7 +18,8 @@ export class AppComponent implements OnInit {
   loading: boolean
 
   constructor(
-    private readonly todosService: TodosService
+    private readonly todosService: TodosService,
+    private readonly alertService: AlertService
   ) {
   }
 
@@ -48,13 +50,13 @@ export class AppComponent implements OnInit {
 
     this.todosService.create(data).subscribe((response: ITodosError & ITodos) => {
       if (response.message) {
-        // alert.service
+        this.alertService.danger(response.message)
       } else {
+        this.alertService.success('Add Todo!')
         this.form.reset()
         this.loadTodos()
       }
     }, () => {
-
       this.form.reset()
     })
   }
