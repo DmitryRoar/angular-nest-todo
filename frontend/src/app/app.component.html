@@ -6,7 +6,7 @@
       <form (ngSubmit)="onSubmit()" [formGroup]="form">
         <input type="text" placeholder="todo" formControlName="title">
 
-        <button type="submit">send</button>
+        <button type="submit" [disabled]="disabled">send</button>
       </form>
     </div>
 

@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core'
 import {FormControl, FormGroup, Validators} from '@angular/forms'
 
-import {TodosService} from "./shared/services/todos.service";
+import {TodosService} from './shared/services/todos.service'
 
-import {ITodos, ITodosError} from './shared/interfaces'
+import {ITodos} from './shared/interfaces'
 import {AlertService} from './shared/services/alert.service'
 
 @Component({
@@ -16,6 +16,8 @@ export class AppComponent implements OnInit {
   todos: ITodos[] | [] = []
 
   loading: boolean
+
+  disabled = false
 
   constructor(
     private readonly todosService: TodosService,
@@ -40,7 +42,13 @@ export class AppComponent implements OnInit {
   }
 
   onSubmit(): void {
+    this.disabled = true
     const title: string = this.form.value.title
+    if (!title) {
+      this.alertService.danger('Empty Title')
+      this.disabled = false
+      return
+    }
 
     const data: ITodos = {
       title,
@@ -48,16 +56,14 @@ export class AppComponent implements OnInit {
       confirm: false
     }
 
-    this.todosService.create(data).subscribe((response: ITodosError & ITodos) => {
-      if (response.message) {
-        this.alertService.danger(response.message)
-      } else {
-        this.alertService.success('Add Todo!')
-        this.form.reset()
-        this.loadTodos()
-      }
+    this.todosService.create(data).subscribe(() => {
+      this.form.reset()
+      this.alertService.success('Add Todo!')
+      this.disabled = false
     }, () => {
       this.form.reset()
+    }, () => {
+      this.loadTodos()
     })
   }
 }

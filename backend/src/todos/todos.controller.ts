@@ -14,10 +14,7 @@ export class TodosController {
     }
 
     @Post()
-    create(@Body() todoCreate: TodoCreateDto): Promise<Todos> | {message: string} {
-        if (todoCreate.title) {
-            return this.todosService.create(todoCreate)
-        }
-        return {message: 'Empty Title'}
+    create(@Body() todoCreate: TodoCreateDto): Promise<Todos> {
+        return this.todosService.create(todoCreate)
     }
 }
