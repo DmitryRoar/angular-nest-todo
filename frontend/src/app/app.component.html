@@ -8,6 +8,10 @@
 
         <button type="submit" [disabled]="disabled">send</button>
       </form>
+
+      <div>
+        toggleTheme
+      </div>
     </div>
 
     <app-todos [todos]="todos" *ngIf="loading; else loader"></app-todos>

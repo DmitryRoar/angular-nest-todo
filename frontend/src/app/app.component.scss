@@ -13,3 +13,36 @@
   border-radius: 4px;
   padding: 20px;
 }
+
+.form {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.form {
+
+  input {
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 10px 15px;
+    margin: 0 20px 0 0;
+  }
+
+  button {
+    color: #fff;
+    background: #dc3545;
+    padding: 10px 25px;
+    border-radius: 11px;
+
+    &:disabled {
+      color: #fff;
+      background: gray;
+      cursor: not-allowed;
+    }
+  }
+
+  input, button {
+    font-size: 1.2rem;
+  }
+}
