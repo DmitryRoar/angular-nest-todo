@@ -14,16 +14,25 @@
 
   .todo {
     display: flex;
+    width: 100%;
 
-    &__title {
-      white-space: nowrap;
-      text-overflow: ellipsis;
-      overflow: hidden;
-      max-width: 50%;
+    &-info {
+      display: flex;
+
+      &__title {
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        max-width: 80%;
+      }
     }
 
     h3, strong {
       font-size: 1.2rem;
     }
+  }
+
+  .buttons {
+    padding: 0 20px;
   }
 }

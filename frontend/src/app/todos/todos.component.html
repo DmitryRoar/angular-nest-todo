@@ -1,9 +1,11 @@
 <div class="wrap">
-  <ul>
-    <li *ngFor="let todo of todos" class="todo">
-      <h3 class="todo__title">{{todo.title}}</h3>
-
+  <div *ngFor="let todo of todos" class="todo">
+    <div class="todo-info">
+      <h3 [title]="todo.title" class="todo-info__title">{{todo.title}}&nbsp;</h3>
       <strong>{{todo.date | date:'medium':null:'ru'}}</strong>
-    </li>
-  </ul>
+    </div>
+    <div class="buttons">
+      <button>btn</button>
+    </div>
+  </div>
 </div>

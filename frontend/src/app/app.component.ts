@@ -50,7 +50,7 @@ export class AppComponent implements OnInit {
 
   onSubmit(): void {
     const title = String(this.form.value.title)
-    if (!title.trim()) {
+    if (!title.trim() || title.trim() === 'null') {
       this.alertService.danger('Empty Title')
       return
     }
