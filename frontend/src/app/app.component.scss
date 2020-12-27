@@ -4,9 +4,27 @@
   width: 100vw;
   justify-content: center;
   align-items: center;
+  color: #000;
 
   &-dark {
-    background: red;
+    background: #19191b;
+    color: #fff;
+
+    .form {
+      input {
+        border: 1px solid #dc3545;
+      }
+
+      button {
+        color: #fff;
+        background: #dc3545;
+      }
+    }
+
+    .container {
+      background: #37363b;
+      border-radius: 7px;
+    }
   }
 }
 
@@ -16,28 +34,27 @@
   border: 1px solid #b00020;
   border-radius: 4px;
   padding: 20px;
+  transition: .5s;
 }
 
 .form {
   display: flex;
   align-items: center;
   justify-content: space-between;
-}
-
-.form {
+  margin: 0 0 20px 0;
 
   input {
     border: 1px solid black;
     border-radius: 5px;
     padding: 10px 15px;
     margin: 0 20px 0 0;
+    transition: .3s ease-in-out;
   }
 
   button {
-    color: #fff;
-    background: #dc3545;
     padding: 10px 25px;
     border-radius: 11px;
+    transition: .3s ease-in-out;
 
     &:disabled {
       color: #fff;

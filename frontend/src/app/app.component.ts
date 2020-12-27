@@ -17,7 +17,6 @@ export class AppComponent implements OnInit {
   todos: ITodos[] | [] = []
 
   loading: boolean
-  disabled = false
   theme: string
 
   constructor(
@@ -28,6 +27,9 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadTodos()
+    if (localStorage.getItem('user-theme')) {
+      this.theme = localStorage.getItem('user-theme') as string
+    }
 
     this.form = new FormGroup({
       title: new FormControl('', [Validators.required])
@@ -47,11 +49,9 @@ export class AppComponent implements OnInit {
   }
 
   onSubmit(): void {
-    this.disabled = true
-    const title: string = this.form.value.title
-    if (!title) {
+    const title = String(this.form.value.title)
+    if (!title.trim()) {
       this.alertService.danger('Empty Title')
-      this.disabled = false
       return
     }
 
@@ -64,7 +64,6 @@ export class AppComponent implements OnInit {
     this.todosService.create(data).subscribe(() => {
       this.form.reset()
       this.alertService.success('Add Todo!')
-      this.disabled = false
     }, () => {
       this.form.reset()
     }, () => {

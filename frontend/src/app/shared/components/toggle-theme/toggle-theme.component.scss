@@ -1,0 +1,17 @@
+.wrap {
+  button {
+    background: none;
+  }
+
+  i {
+    font-size: 1.5rem;
+
+    &.fa-moon {
+      color: #19191b;
+    }
+
+    &.fa-sun {
+      color: #fff;
+    }
+  }
+}

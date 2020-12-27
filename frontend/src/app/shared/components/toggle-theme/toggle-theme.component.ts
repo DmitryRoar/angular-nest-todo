@@ -1,6 +1,6 @@
-import {Component, OnInit, Output, EventEmitter} from '@angular/core'
+import {Component, EventEmitter, OnInit, Output} from '@angular/core'
 
-type Theme = 'light' | 'dark'
+type Theme = 'light' | 'dark' | ''
 
 @Component({
   selector: 'app-toggle-theme',
@@ -8,21 +8,23 @@ type Theme = 'light' | 'dark'
   styleUrls: ['./toggle-theme.component.scss']
 })
 export class ToggleThemeComponent implements OnInit {
-  @Output() temp = new EventEmitter<Theme>()
+  @Output() onTheme: any = new EventEmitter<Theme>()
 
-  theme: Theme = 'light'
-  themeStorage = localStorage.getItem('user-theme') as Theme
+  theme: Theme = ''
+  storageTheme = localStorage.getItem('user-theme') as Theme
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit(): void {
-    // if (this.themeStorage)
-    // this.theme = this.themeStorage
+    if (this.storageTheme) {
+      this.theme = this.storageTheme
+    }
   }
 
   toggleTheme() {
     this.theme = this.theme === 'light' ? 'dark' : 'light'
-    this.temp.emit(this.theme)
-    // localStorage.setItem('user-theme', this.theme)
+    this.onTheme.emit(this.theme)
+    localStorage.setItem('user-theme', this.theme)
   }
 }

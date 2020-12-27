@@ -6,12 +6,13 @@ import {NgModule} from '@angular/core'
 import {AppComponent} from './app.component'
 import {TodosComponent} from './todos/todos.component'
 import {LoaderComponent} from './shared/components/loader/loader.component'
+import {ToggleThemeComponent} from './shared/components/toggle-theme/toggle-theme.component'
+import {AlertComponent} from './shared/components/alert/alert.component'
+import {TodosService} from './shared/services/todos.service'
 
 import {registerLocaleData} from '@angular/common'
 import ruLocale from '@angular/common/locales/ru'
-import {TodosService} from "./shared/services/todos.service";
-import { AlertComponent } from './shared/components/alert/alert.component';
-import { ToggleThemeComponent } from './shared/components/toggle-theme/toggle-theme.component';
+
 registerLocaleData(ruLocale)
 
 @NgModule({
@@ -31,4 +32,5 @@ registerLocaleData(ruLocale)
   providers: [TodosService],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule {
+}

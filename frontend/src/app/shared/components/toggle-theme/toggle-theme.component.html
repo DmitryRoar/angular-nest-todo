@@ -1,5 +1,8 @@
-<div>
+<div class="wrap">
   <button (click)="toggleTheme()">
-    {{theme}}
+    <i class="fas" [ngClass]="{
+      'fa-moon': theme === 'light',
+      'fa-sun': theme === 'dark'
+    }"></i>
   </button>
 </div>

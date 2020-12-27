@@ -1,4 +1,29 @@
 .wrap {
-  max-height: 100%;
+  max-height: calc(100% - 60px);
   overflow-y: auto;
+  overflow-x: hidden;
+
+  &::-webkit-scrollbar {
+    background: #797979;
+    border-radius: 5px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #39393c;
+  }
+
+  .todo {
+    display: flex;
+
+    &__title {
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      max-width: 50%;
+    }
+
+    h3, strong {
+      font-size: 1.2rem;
+    }
+  }
 }
