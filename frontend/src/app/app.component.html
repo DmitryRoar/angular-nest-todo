@@ -6,7 +6,7 @@
       <form (ngSubmit)="onSubmit()" [formGroup]="form">
         <input type="text" placeholder="Todo" formControlName="title">
 
-        <button type="submit">Отправить</button>
+        <button type="submit" [disabled]="disabled">Отправить</button>
       </form>
 
       <app-toggle-theme (onTheme)="toggleTheme($event)"></app-toggle-theme>

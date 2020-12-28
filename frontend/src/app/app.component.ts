@@ -16,6 +16,7 @@ export class AppComponent implements OnInit {
 
   todos: ITodos[] | [] = []
 
+  disabled = false
   loading: boolean
   theme: string
 
@@ -49,9 +50,11 @@ export class AppComponent implements OnInit {
   }
 
   onSubmit(): void {
+    this.disabled = true
     const title = String(this.form.value.title)
     if (!title.trim() || title.trim() === 'null') {
       this.alertService.danger('Empty Title')
+      this.disabled = false
       return
     }
 
@@ -62,6 +65,7 @@ export class AppComponent implements OnInit {
     }
 
     this.todosService.create(data).subscribe(() => {
+      this.disabled = false
       this.form.reset()
       this.alertService.success('Add Todo!')
     }, () => {
