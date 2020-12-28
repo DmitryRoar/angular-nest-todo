@@ -16,4 +16,8 @@ export class TodosService {
   create(todo: ITodos): Observable<ITodos | ITodosError> {
     return this.http.post<ITodos>(`/api/todos`, todo)
   }
+
+  confirm(id): Observable<ITodos> {
+    return this.http.patch<ITodos>(`/api/todos`, id)
+  }
 }

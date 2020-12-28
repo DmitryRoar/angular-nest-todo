@@ -4,6 +4,7 @@ export interface ITodos {
   title: string
   date: string
   confirm: boolean
+  _id?: string
 }
 
 export interface ITodosError {

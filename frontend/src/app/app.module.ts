@@ -14,7 +14,7 @@ import {TodosService} from './shared/services/todos.service'
 import {FindTodoPipe} from './shared/pipes/find-todo.pipe'
 
 import {registerLocaleData} from '@angular/common'
-import ruLocale from '@angular/common/locales/ru'
+import ruLocale from '@angular/common/locales/ru';
 
 registerLocaleData(ruLocale)
 

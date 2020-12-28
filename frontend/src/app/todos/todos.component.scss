@@ -15,9 +15,14 @@
   .todo {
     display: flex;
     width: 100%;
+    justify-content: space-between;
 
     &-info {
       display: flex;
+
+      &.confirm {
+        text-decoration: line-through;
+      }
 
       &__title {
         white-space: nowrap;
@@ -31,8 +36,8 @@
       font-size: 1.2rem;
     }
   }
+}
 
-  .buttons {
-    padding: 0 20px;
-  }
+.buttons {
+  padding: 0 20px;
 }
