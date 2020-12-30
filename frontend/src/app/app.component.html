@@ -14,6 +14,7 @@
 
     <app-todos
       (onConfirm)="confirm($event)"
+      (onRemove)="remove($event)"
       [todos]="todos" *ngIf="loading; else loader"
     ></app-todos>
 

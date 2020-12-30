@@ -1,10 +1,11 @@
-import {Body, Controller, Get, Post, Put} from '@nestjs/common'
+import {Body, Controller, Delete, Get, Param, Post, Put} from '@nestjs/common'
 import {Todo} from './schemas/todo.schema'
 
 import {TodoService} from './todo.service'
 
 import {ConfirmTodoDto} from './dto/confirm-todo.dto'
 import {CreateTodoDto} from './dto/create-todo.dto'
+import {RemoveTodoDto} from './dto/remove-todo.dto'
 
 
 @Controller('todos')
@@ -25,5 +26,10 @@ export class TodoController {
   @Put()
   confirm(@Body() todo: ConfirmTodoDto): Promise<Todo> {
     return this.todoService.update(todo)
+  }
+
+  @Delete(':id')
+  remove(@Param('id') id: RemoveTodoDto): Promise<Todo> {
+    return this.todoService.remove(id)
   }
 }

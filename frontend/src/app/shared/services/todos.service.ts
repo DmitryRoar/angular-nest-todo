@@ -20,4 +20,8 @@ export class TodosService {
   update(todo: ITodos): Observable<ITodos> {
     return this.http.put<ITodos>(`/api/todos`, todo)
   }
+
+  remove(id: string): Observable<ITodos> {
+    return this.http.delete<ITodos>(`/api/todos/${id}`)
+  }
 }

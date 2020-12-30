@@ -15,7 +15,7 @@ export class AlertService {
     this.alert$.next({type: 'warning', text})
   }
 
-  danger(text: string) {
+  danger(text = 'Что-то пошло не так. Попробуйте попытку позже') {
     this.alert$.next({type: 'danger', text})
   }
 }

@@ -10,6 +10,7 @@ import {ITodos} from '../shared/interfaces'
 export class TodosComponent {
   @Input() todos: ITodos[] | []
   @Output() onConfirm = new EventEmitter<ITodos>()
+  @Output() onRemove = new EventEmitter<string>()
 
   constructor() {}
 
@@ -19,5 +20,9 @@ export class TodosComponent {
       confirm: true
     }
     this.onConfirm.emit(newTodo)
+  }
+
+  remove(id: string) {
+    this.onRemove.emit(id)
   }
 }

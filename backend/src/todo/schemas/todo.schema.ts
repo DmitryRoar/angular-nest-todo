@@ -1,7 +1,7 @@
 import {Schema, Prop, SchemaFactory} from '@nestjs/mongoose'
 import {Document} from 'mongoose'
 
-export type TodosDocument = Todo & Document
+export type TodoDocument = Todo & Document
 
 @Schema()
 export class Todo {

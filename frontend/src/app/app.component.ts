@@ -42,6 +42,8 @@ export class AppComponent implements OnInit {
     return this.todosService.getAll().subscribe((todos: ITodos[]) => {
       this.loading = true
       this.todos = todos
+    }, () => {
+      this.alertService.danger()
     })
   }
 
@@ -49,6 +51,16 @@ export class AppComponent implements OnInit {
     return this.todosService.update(todo).subscribe(() => {
       this.alertService.success('Успешно Завершено')
     }, () => {}, () => {
+      this.loadTodos()
+    })
+  }
+
+  remove(id: string) {
+    return this.todosService.remove(id).subscribe(() => {
+      return this.alertService.success('Успешно удалено')
+    }, () => {
+      this.alertService.danger()
+    }, () => {
       this.loadTodos()
     })
   }
@@ -78,6 +90,7 @@ export class AppComponent implements OnInit {
       this.alertService.success('Успешно добавлено!')
     }, () => {
       this.form.reset()
+      this.alertService.danger()
     }, () => {
       this.loadTodos()
     })
