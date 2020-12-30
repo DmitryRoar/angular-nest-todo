@@ -12,7 +12,10 @@
       <app-toggle-theme (onTheme)="toggleTheme($event)"></app-toggle-theme>
     </div>
 
-    <app-todos [todos]="todos" *ngIf="loading; else loader"></app-todos>
+    <app-todos
+      (onConfirm)="confirm($event)"
+      [todos]="todos" *ngIf="loading; else loader"
+    ></app-todos>
 
     <ng-template #loader>
       <app-loader></app-loader>

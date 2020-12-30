@@ -45,6 +45,14 @@ export class AppComponent implements OnInit {
     })
   }
 
+  confirm(todo) {
+    return this.todosService.update(todo).subscribe(() => {
+      this.alertService.success('Успешно Завершено')
+    }, () => {}, () => {
+      this.loadTodos()
+    })
+  }
+
   toggleTheme(theme) {
     this.theme = theme
   }
@@ -53,7 +61,7 @@ export class AppComponent implements OnInit {
     this.disabled = true
     const title = String(this.form.value.title)
     if (!title.trim() || title.trim() === 'null') {
-      this.alertService.danger('Empty Title')
+      this.alertService.danger('Пустое поле "Todo"')
       this.disabled = false
       return
     }
@@ -67,7 +75,7 @@ export class AppComponent implements OnInit {
     this.todosService.create(data).subscribe(() => {
       this.disabled = false
       this.form.reset()
-      this.alertService.success('Add Todo!')
+      this.alertService.success('Успешно добавлено!')
     }, () => {
       this.form.reset()
     }, () => {

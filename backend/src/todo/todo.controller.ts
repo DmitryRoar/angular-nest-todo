@@ -1,8 +1,11 @@
-import {Body, Controller, Get, Patch, Post} from '@nestjs/common'
-import {TodoService} from './todo.service'
-import {CreateTodoDto} from './dto/create-todo.dto'
+import {Body, Controller, Get, Post, Put} from '@nestjs/common'
 import {Todo} from './schemas/todo.schema'
+
+import {TodoService} from './todo.service'
+
 import {ConfirmTodoDto} from './dto/confirm-todo.dto'
+import {CreateTodoDto} from './dto/create-todo.dto'
+
 
 @Controller('todos')
 export class TodoController {
@@ -19,8 +22,8 @@ export class TodoController {
     return this.todoService.create(createTodoDto)
   }
 
-  @Patch()
-  confirm(@Body() id: ConfirmTodoDto): Promise<Todo> {
-    return this.todoService.confirm(id)
+  @Put()
+  confirm(@Body() todo: ConfirmTodoDto): Promise<Todo> {
+    return this.todoService.update(todo)
   }
 }

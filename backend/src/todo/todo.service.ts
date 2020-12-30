@@ -20,9 +20,8 @@ export class TodoService {
     return await newTodo.save()
   }
 
-  async confirm(id: ConfirmTodoDto): Promise<Todo> {
-    const todo = await this.todosModal.findById(id)
-    todo.confirm = true
-    return await todo.save()
+  async update(todo: ConfirmTodoDto): Promise<Todo> {
+    const newTodo = await this.todosModal.findByIdAndUpdate(todo._id, todo)
+    return await newTodo.save()
   }
 }

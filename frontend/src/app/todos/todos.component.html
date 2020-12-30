@@ -1,11 +1,11 @@
 <div class="wrap">
   <div *ngFor="let todo of todos" class="todo">
-    <div class="todo-info" [class.confirm]="confirmTodo">
+    <div class="todo-info" [class.confirm]="todo.confirm">
       <h3 [title]="todo.title" class="todo-info__title">{{todo.title}}&nbsp;</h3>
       <strong>{{todo.date | date:'medium':null:'ru'}}</strong>
 
       <div class="buttons">
-        <button (click)="confirm(todo)">Выполено</button>
+        <button (click)="confirm(todo)">Завершить</button>
         <button>Удалить</button>
       </div>
     </div>

@@ -10,14 +10,14 @@ export class TodosService {
   }
 
   getAll(): Observable<ITodos[] | []> {
-    return this.http.get<ITodos[] | []>(`/api/todos`)
+    return this.http.get<ITodos[]>(`/api/todos`)
   }
 
   create(todo: ITodos): Observable<ITodos | ITodosError> {
     return this.http.post<ITodos>(`/api/todos`, todo)
   }
 
-  confirm(id): Observable<ITodos> {
-    return this.http.patch<ITodos>(`/api/todos`, id)
+  update(todo: ITodos): Observable<ITodos> {
+    return this.http.put<ITodos>(`/api/todos`, todo)
   }
 }

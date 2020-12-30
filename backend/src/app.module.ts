@@ -6,7 +6,9 @@ import {TodoModule} from './todo/todo.module'
 @Module({
   imports: [
     TodoModule,
-    MongooseModule.forRoot('mongodb+srv://roar:zxc123@cluster0.f8p0k.mongodb.net/todos')
+    MongooseModule.forRoot('mongodb+srv://roar:zxc123@cluster0.f8p0k.mongodb.net/todos', {
+      useFindAndModify: true
+    })
   ]
 })
 export class AppModule {
