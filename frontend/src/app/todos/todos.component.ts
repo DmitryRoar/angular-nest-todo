@@ -1,4 +1,4 @@
-import {Component, Input, Output, EventEmitter} from '@angular/core'
+import {Component, EventEmitter, Input, Output, ViewEncapsulation} from '@angular/core'
 
 import {ITodos} from '../shared/interfaces'
 
@@ -6,6 +6,7 @@ import {ITodos} from '../shared/interfaces'
   selector: 'app-todos',
   templateUrl: './todos.component.html',
   styleUrls: ['./todos.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class TodosComponent {
   @Input() todos: ITodos[] | []

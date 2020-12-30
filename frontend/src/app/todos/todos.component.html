@@ -1,13 +1,26 @@
-<div class="wrap">
+<div class="todo-wrap" *ngIf="todos.length; else empty">
   <div *ngFor="let todo of todos" class="todo">
-    <div class="todo-info" [class.confirm]="todo.confirm">
+    <div
+      class="todo-info"
+      [class.confirm]="todo.confirm"
+    >
       <h3 [title]="todo.title" class="todo-info__title">{{todo.title}}&nbsp;</h3>
-      <strong>{{todo.date | date:'medium':null:'ru'}}</strong>
+      <strong
+        [title]="todo.date | date:'medium'"
+      >
+        {{todo.date | date:'medium':null:'ru'}}
+      </strong>
 
       <div class="buttons">
-        <button (click)="confirm(todo)">Завершить</button>
-        <button (click)="remove(todo._id)">Удалить</button>
+        <button (click)="confirm(todo)" [disabled]="todo.confirm">Завершить</button>
+        <button (click)="remove(todo._id)" class="buttons__remove">Удалить</button>
       </div>
     </div>
   </div>
 </div>
+
+<ng-template #empty>
+  <div class="empty">
+    <p class="empty__p">Добавьте задание</p>
+  </div>
+</ng-template>
