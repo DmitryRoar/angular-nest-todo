@@ -38,9 +38,9 @@ export class AppComponent implements OnInit {
   }
 
   loadTodos() {
-    this.loading = false
+    this.loading = true
     return this.todosService.getAll().subscribe((todos: ITodos[]) => {
-      this.loading = true
+      this.loading = false
       this.todos = todos
     }, () => {
       this.alertService.danger()
