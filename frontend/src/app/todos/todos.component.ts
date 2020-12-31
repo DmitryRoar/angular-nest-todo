@@ -1,6 +1,8 @@
-import {Component, EventEmitter, Input, Output, ViewEncapsulation} from '@angular/core'
-
+import {Component, OnInit, ViewEncapsulation} from '@angular/core'
+import {FormControl, FormGroup, Validators} from '@angular/forms'
 import {ITodos} from '../shared/interfaces'
+import {TodosService} from '../shared/services/todos.service'
+import {AlertService} from '../shared/services/alert.service'
 
 @Component({
   selector: 'app-todos',
@@ -8,22 +10,89 @@ import {ITodos} from '../shared/interfaces'
   styleUrls: ['./todos.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class TodosComponent {
-  @Input() todos: ITodos[] | []
-  @Output() onConfirm = new EventEmitter<ITodos>()
-  @Output() onRemove = new EventEmitter<string>()
+export class TodosComponent implements OnInit {
+  form: FormGroup
 
-  constructor() {}
+  todos: ITodos[] | [] = []
 
-  confirm(todo: ITodos) {
-    const newTodo: ITodos = {
-      ...todo,
-      confirm: true
+  disabled = false
+  loading: boolean
+  theme: string
+
+  constructor(
+    private readonly todosService: TodosService,
+    private readonly alertService: AlertService
+  ) {
+  }
+
+  ngOnInit(): void {
+    this.loadTodos()
+    if (localStorage.getItem('user-theme')) {
+      this.theme = localStorage.getItem('user-theme') as string
     }
-    this.onConfirm.emit(newTodo)
+
+    this.form = new FormGroup({
+      title: new FormControl('', [Validators.required])
+    })
+  }
+
+  loadTodos() {
+    this.loading = true
+    return this.todosService.getAll().subscribe((todos: ITodos[]) => {
+      this.loading = false
+      this.todos = todos
+    }, () => {
+      this.alertService.danger()
+    })
+  }
+
+  confirm(todo) {
+    return this.todosService.update(todo).subscribe(() => {
+      this.alertService.success('Успешно Завершено')
+    }, () => {
+    }, () => {
+      this.loadTodos()
+    })
   }
 
   remove(id: string) {
-    this.onRemove.emit(id)
+    return this.todosService.remove(id).subscribe(() => {
+      return this.alertService.success('Успешно удалено')
+    }, () => {
+      this.alertService.danger()
+    }, () => {
+      this.loadTodos()
+    })
+  }
+
+  toggleTheme(theme) {
+    this.theme = theme
+  }
+
+  onSubmit(): void {
+    this.disabled = true
+    const title = String(this.form.value.title)
+    if (!title.trim() || title.trim() === 'null') {
+      this.alertService.danger('Пустое поле "Todo"')
+      this.disabled = false
+      return
+    }
+
+    const data: ITodos = {
+      title,
+      date: new Date().toJSON(),
+      confirm: false
+    }
+
+    this.todosService.create(data).subscribe(() => {
+      this.disabled = false
+      this.form.reset()
+      this.alertService.success('Успешно добавлено!')
+    }, () => {
+      this.form.reset()
+      this.alertService.danger()
+    }, () => {
+      this.loadTodos()
+    })
   }
 }

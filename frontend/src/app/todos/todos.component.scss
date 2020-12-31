@@ -1,101 +1,71 @@
-.todo-wrap {
-  max-height: calc(100% - 60px);
-  overflow-y: auto;
-  overflow-x: hidden;
-
-  .todo {
-    display: flex;
-
-    &-info {
-      display: flex;
-      width: 100%;
-      justify-content: space-between;
-      cursor: default;
-
-      &.confirm {
-        text-decoration: line-through;
-      }
-
-      &__title {
-        white-space: nowrap;
-        text-overflow: ellipsis;
-        overflow: hidden;
-        max-width: 27%;
-        width: 27%;
-      }
-    }
-
-    h3, strong {
-      font-size: 1.2rem;
-    }
-  }
-}
-
-.buttons {
-  button {
-    font-size: 1.1rem;
-    border-radius: 2px;
-  }
-
-  &__remove {
-    background: #b00020;
-    color: #fff;
-  }
-}
-
-.empty {
-  &__p {
-    font-size: 1.4rem;
-  }
-}
-
-
 .wrap {
-  .todo {
-    &-info {
-      &.confirm {
-        color: #b00020;
-      }
-
-      .buttons {
-        button {
-          &:disabled {
-            color: #000;
-            background: #ccc;
-          }
-        }
-      }
-    }
-
-    &-wrap {
-      &::-webkit-scrollbar {
-        border-radius: 5px;
-        background: #e2e2e2;
-      }
-    }
-  }
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  justify-content: center;
+  align-items: center;
+  color: #000;
 
   &-dark {
-    .todo {
-      &-info {
-        &.confirm {
-          color: #ccc;
-        }
+    background: #19191b;
+    color: #fff;
 
-        .buttons {
-          button {
-            &:disabled {
-              color: #000;
-            }
-          }
-        }
+    .form {
+      input {
+        border: 1px solid #dc3545;
       }
 
-      &-wrap {
-        &::-webkit-scrollbar-thumb {
-          background: #39393c;
-        }
+      button {
+        color: #fff;
+        background: #dc3545;
       }
+    }
+
+    .container {
+      background: #37363b;
+      border-radius: 7px;
     }
   }
 }
+
+.container {
+  width: 500px;
+  height: 600px;
+  border: 1px solid #b00020;
+  border-radius: 4px;
+  padding: 20px;
+  transition: .5s;
+}
+
+.form {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 0 20px 0;
+
+  input {
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 10px 15px;
+    margin: 0 20px 0 0;
+    transition: .3s ease-in-out;
+  }
+
+  button {
+    padding: 10px 25px;
+    border-radius: 11px;
+    transition: .3s ease-in-out;
+
+    &:disabled {
+      color: #fff;
+      background: #b7b1b1;
+      cursor: not-allowed;
+    }
+  }
+
+  input, button {
+    font-size: 1.2rem;
+  }
+}
+
+

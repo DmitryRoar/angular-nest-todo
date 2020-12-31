@@ -15,6 +15,10 @@ import {FindTodoPipe} from './shared/pipes/find-todo.pipe'
 
 import {registerLocaleData} from '@angular/common'
 import ruLocale from '@angular/common/locales/ru';
+import { LoginComponent } from './auth/login/login.component';
+import { SignupComponent } from './auth/signup/signup.component';
+import {AuthModule} from './auth/auth.module';
+import { TodosListComponent } from './todos/todos-list/todos-list.component'
 
 registerLocaleData(ruLocale)
 
@@ -25,13 +29,15 @@ registerLocaleData(ruLocale)
     LoaderComponent,
     AlertComponent,
     ToggleThemeComponent,
-    FindTodoPipe
+    FindTodoPipe,
+    TodosListComponent
   ],
   imports: [
     HttpClientModule,
     BrowserModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AuthModule
   ],
   providers: [TodosService],
   bootstrap: [AppComponent]
