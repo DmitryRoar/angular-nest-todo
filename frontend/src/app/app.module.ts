@@ -18,7 +18,10 @@ import ruLocale from '@angular/common/locales/ru';
 import { LoginComponent } from './auth/login/login.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import {AuthModule} from './auth/auth.module';
-import { TodosListComponent } from './todos/todos-list/todos-list.component'
+import { TodosListComponent } from './todos/todos-list/todos-list.component';
+import { MainLayoutComponent } from './shared/components/main-layout/main-layout.component'
+import {RouterModule} from '@angular/router'
+import {AppRoutingModule} from './app-routing.module'
 
 registerLocaleData(ruLocale)
 
@@ -30,14 +33,16 @@ registerLocaleData(ruLocale)
     AlertComponent,
     ToggleThemeComponent,
     FindTodoPipe,
-    TodosListComponent
+    TodosListComponent,
+    MainLayoutComponent
   ],
   imports: [
     HttpClientModule,
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
-    AuthModule
+    AuthModule,
+    AppRoutingModule
   ],
   providers: [TodosService],
   bootstrap: [AppComponent]
