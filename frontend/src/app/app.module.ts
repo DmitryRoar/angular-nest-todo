@@ -1,40 +1,37 @@
+import {NgModule} from '@angular/core'
 import {BrowserModule} from '@angular/platform-browser'
 import {FormsModule, ReactiveFormsModule} from '@angular/forms'
 import {HttpClientModule} from '@angular/common/http'
-import {NgModule} from '@angular/core'
+import {AppRoutingModule} from './app-routing.module'
+import {AuthModule} from './auth/auth.module'
 
 import {AppComponent} from './app.component'
-import {TodosComponent} from './todos/todos.component'
+import {TodosPageComponent} from './todos/todos-page.component'
 import {LoaderComponent} from './shared/components/loader/loader.component'
 import {ToggleThemeComponent} from './shared/components/toggle-theme/toggle-theme.component'
 import {AlertComponent} from './shared/components/alert/alert.component'
-
-import {TodosService} from './shared/services/todos.service'
+import {TodosListComponent} from './todos/todos-list/todos-list.component'
+import {MainLayoutComponent} from './shared/components/main-layout/main-layout.component'
+import {ErrorPageComponent} from './error-page/error-page.component'
 
 import {FindTodoPipe} from './shared/pipes/find-todo.pipe'
 
 import {registerLocaleData} from '@angular/common'
-import ruLocale from '@angular/common/locales/ru';
-import { LoginComponent } from './auth/login/login.component';
-import { SignupComponent } from './auth/signup/signup.component';
-import {AuthModule} from './auth/auth.module';
-import { TodosListComponent } from './todos/todos-list/todos-list.component';
-import { MainLayoutComponent } from './shared/components/main-layout/main-layout.component'
-import {RouterModule} from '@angular/router'
-import {AppRoutingModule} from './app-routing.module'
+import ruLocale from '@angular/common/locales/ru'
 
 registerLocaleData(ruLocale)
 
 @NgModule({
   declarations: [
     AppComponent,
-    TodosComponent,
+    TodosPageComponent,
     LoaderComponent,
     AlertComponent,
     ToggleThemeComponent,
     FindTodoPipe,
     TodosListComponent,
-    MainLayoutComponent
+    MainLayoutComponent,
+    ErrorPageComponent
   ],
   imports: [
     HttpClientModule,
@@ -44,7 +41,7 @@ registerLocaleData(ruLocale)
     AuthModule,
     AppRoutingModule
   ],
-  providers: [TodosService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule {

@@ -1,9 +1,10 @@
 import {NgModule} from '@angular/core'
-import {RouterModule, Routes} from '@angular/router'
+import {PreloadAllModules, RouterModule, Routes} from '@angular/router'
 
 import {MainLayoutComponent} from './shared/components/main-layout/main-layout.component'
-import {AuthLayoutComponent} from './auth/shared/components/auth-layout/auth-layout.component'
-import {TodosComponent} from './todos/todos.component'
+import {TodosPageComponent} from './todos/todos-page.component'
+import {ErrorPageComponent} from './error-page/error-page.component'
+import {AuthModule} from './auth/auth.module'
 
 const routes: Routes = [
   {
@@ -11,16 +12,21 @@ const routes: Routes = [
     component: MainLayoutComponent,
     children: [
       {path: '', pathMatch: 'full', redirectTo: '/'},
-      {path: '', component: TodosComponent}
+      {path: '', component: TodosPageComponent}
     ]
   },
-  {path: 'auth', component: AuthLayoutComponent}
+  {path: 'auth', loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)},
+  {path: 'error', component: ErrorPageComponent},
+  {path: '**', redirectTo: 'error'}
 ]
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes, {
+      preloadingStrategy: PreloadAllModules
+    })
   ],
   exports: [RouterModule]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule {
+}

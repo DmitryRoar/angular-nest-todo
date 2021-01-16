@@ -6,11 +6,11 @@ import {AlertService} from '../shared/services/alert.service'
 
 @Component({
   selector: 'app-todos',
-  templateUrl: './todos.component.html',
-  styleUrls: ['./todos.component.scss'],
+  templateUrl: './todos-page.component.html',
+  styleUrls: ['./todos-page.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class TodosComponent implements OnInit {
+export class TodosPageComponent implements OnInit {
   form: FormGroup
 
   todos: ITodos[] | [] = []
