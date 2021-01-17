@@ -1,3 +1,6 @@
+@import 'src/assets/scss/var';
+
+
 .todo-wrap {
   max-height: calc(100% - 60px);
   overflow-y: auto;
@@ -12,6 +15,12 @@
       justify-content: space-between;
       cursor: default;
 
+      &:hover {
+        .buttons {
+          opacity: 1;
+        }
+      }
+
       &.confirm {
         text-decoration: line-through;
       }
@@ -20,8 +29,8 @@
         white-space: nowrap;
         text-overflow: ellipsis;
         overflow: hidden;
-        max-width: 27%;
-        width: 27%;
+        max-width: $todos-width;
+        width: $todos-width;
       }
     }
 
@@ -32,6 +41,9 @@
 }
 
 .buttons {
+  opacity: 0;
+  transition: .4s;
+
   button {
     font-size: 1.1rem;
     border-radius: 2px;

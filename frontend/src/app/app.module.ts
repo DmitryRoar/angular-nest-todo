@@ -1,9 +1,8 @@
 import {NgModule} from '@angular/core'
 import {BrowserModule} from '@angular/platform-browser'
-import {FormsModule, ReactiveFormsModule} from '@angular/forms'
-import {HttpClientModule} from '@angular/common/http'
 import {AppRoutingModule} from './app-routing.module'
 import {AuthModule} from './auth/auth.module'
+import {GeneralModule} from './general.module'
 
 import {AppComponent} from './app.component'
 import {TodosPageComponent} from './todos/todos-page.component'
@@ -34,12 +33,10 @@ registerLocaleData(ruLocale)
     ErrorPageComponent
   ],
   imports: [
-    HttpClientModule,
     BrowserModule,
-    FormsModule,
-    ReactiveFormsModule,
     AuthModule,
-    AppRoutingModule
+    AppRoutingModule,
+    GeneralModule
   ],
   providers: [],
   bootstrap: [AppComponent]

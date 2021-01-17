@@ -5,6 +5,8 @@ import {RouterModule, Routes} from '@angular/router'
 import {SignupComponent} from './signup/signup.component'
 import {LoginComponent} from './login/login.component'
 import {AuthLayoutComponent} from './shared/components/auth-layout/auth-layout.component'
+import {NavbarComponent} from '../shared/components/navbar/navbar.component'
+import {GeneralModule} from '../general.module'
 
 const routes: Routes = [
   {
@@ -21,7 +23,8 @@ const routes: Routes = [
 @NgModule({
   imports: [
     CommonModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    GeneralModule
   ],
   declarations: [
     SignupComponent,

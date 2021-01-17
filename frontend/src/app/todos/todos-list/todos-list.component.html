@@ -6,9 +6,9 @@
     >
       <h3 [title]="todo.title" class="todo-info__title">{{todo.title}}&nbsp;</h3>
       <strong
-        [title]="todo.date | date:'medium'"
+        [title]="todo.date | date:'medium': null: 'ru'"
       >
-        {{todo.date | date:'medium':null:'ru'}}
+        {{todo.date | date:'mediumDate':null:'ru'}}
       </strong>
 
       <div class="buttons">

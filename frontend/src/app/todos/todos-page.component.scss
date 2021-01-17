@@ -1,6 +1,8 @@
+@import 'src/assets/scss/var';
+
 .wrap {
   display: flex;
-  height: 100vh;
+  height: calc(100vh - #{$header-size});
   width: 100vw;
   justify-content: center;
   align-items: center;
@@ -12,12 +14,12 @@
 
     .form {
       input {
-        border: 1px solid #dc3545;
+        border: 1px solid $main-color;
       }
 
-      button {
+      &__btn {
         color: #fff;
-        background: #dc3545;
+        background: $main-color;
       }
     }
 
@@ -51,7 +53,7 @@
     transition: .3s ease-in-out;
   }
 
-  button {
+  &__btn {
     padding: 10px 25px;
     border-radius: 11px;
     transition: .3s ease-in-out;
@@ -63,7 +65,7 @@
     }
   }
 
-  input, button {
+  input, &__btn {
     font-size: 1.2rem;
   }
 

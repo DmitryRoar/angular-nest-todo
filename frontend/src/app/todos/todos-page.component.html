@@ -1,26 +1,31 @@
 <app-alert></app-alert>
 
-<div class="wrap"  [class.wrap-light]="theme === 'light'" [class.wrap-dark]="theme === 'dark'">
-  <div class="container">
-    <div class="form">
-      <form (ngSubmit)="onSubmit()" [formGroup]="form">
-        <input type="text" placeholder="Todo" formControlName="title">
+<div>
+  <app-navbar></app-navbar>
 
-        <button type="submit" [disabled]="disabled">Отправить</button>
-      </form>
+  <div class="wrap" [class.wrap-light]="theme === 'light'" [class.wrap-dark]="theme === 'dark'">
 
-      <app-toggle-theme (onTheme)="toggleTheme($event)"></app-toggle-theme>
+    <div class="container">
+      <div class="form">
+        <form (ngSubmit)="onSubmit()" [formGroup]="form">
+          <input type="text" placeholder="Todo" formControlName="title">
+
+          <button type="submit" class="form__btn" [disabled]="disabled">Отправить</button>
+        </form>
+
+        <app-toggle-theme (onTheme)="toggleTheme($event)"></app-toggle-theme>
+      </div>
+
+      <app-todos-list
+        (onConfirm)="confirm($event)"
+        (onRemove)="remove($event)"
+        [todos]="todos"
+        *ngIf="!loading; else loader"
+      ></app-todos-list>
+
+      <ng-template #loader>
+        <app-loader></app-loader>
+      </ng-template>
     </div>
-
-    <app-todos-list
-      (onConfirm)="confirm($event)"
-      (onRemove)="remove($event)"
-      [todos]="todos"
-      *ngIf="!loading; else loader"
-    ></app-todos-list>
-
-    <ng-template #loader>
-      <app-loader></app-loader>
-    </ng-template>
   </div>
 </div>

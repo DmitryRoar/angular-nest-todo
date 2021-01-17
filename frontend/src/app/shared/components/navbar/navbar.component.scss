@@ -1,0 +1,36 @@
+@import 'src/assets/scss/var';
+
+header {
+  width: 100%;
+  height: $header-size;
+  background: $main-color;
+}
+
+.navbar {
+  display: flex;
+
+  ul {
+    width: 100%;
+    padding: 0 20px;
+    display: inline-flex;
+    height: $header-size;
+    justify-content: center;
+    align-items: center;
+  }
+
+  li {
+    a {
+      color: #fff;
+    }
+
+    &:not(.logo) {
+      margin-right: 10px;
+    }
+  }
+}
+
+.logo {
+  img {
+    width: 2%;
+  }
+}
