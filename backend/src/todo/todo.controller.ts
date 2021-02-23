@@ -1,4 +1,4 @@
-import {Body, Controller, Delete, Get, Param, Post, Put} from '@nestjs/common'
+import {Body, Controller, Delete, Get, Param, Post, Put, Session} from '@nestjs/common'
 import {Todo} from './schemas/todo.schema'
 
 import {TodoService} from './todo.service'
@@ -7,6 +7,8 @@ import {ConfirmTodoDto} from './dto/confirm-todo.dto'
 import {CreateTodoDto} from './dto/create-todo.dto'
 import {RemoveTodoDto} from './dto/remove-todo.dto'
 
+import {ITodoSession} from '../interfaces/todo.interface'
+import {ITodos} from '../interfaces/general.interface'
 
 @Controller('todos')
 export class TodoController {
@@ -14,13 +16,13 @@ export class TodoController {
   }
 
   @Get()
-  getAll() {
-    return this.todoService.getAll()
+  getAll(@Session() session: ITodoSession): Promise<ITodos[] | undefined> {
+    return this.todoService.getAll(session)
   }
 
   @Post()
-  create(@Body() createTodoDto: CreateTodoDto): Promise<Todo> {
-    return this.todoService.create(createTodoDto)
+  create(@Session() session: ITodoSession, @Body() createTodoDto: CreateTodoDto): Promise<Todo> {
+    return this.todoService.create(session, createTodoDto)
   }
 
   @Put()

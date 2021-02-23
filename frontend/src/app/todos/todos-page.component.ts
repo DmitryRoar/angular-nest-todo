@@ -1,8 +1,12 @@
-import {Component, OnInit, ViewEncapsulation} from '@angular/core'
+import {Component, OnDestroy, OnInit, ViewEncapsulation} from '@angular/core'
 import {FormControl, FormGroup, Validators} from '@angular/forms'
-import {ITodos} from '../shared/interfaces'
+import {Subscription} from 'rxjs'
+
 import {TodosService} from '../shared/services/todos.service'
 import {AlertService} from '../shared/services/alert.service'
+
+import {ITodos} from '../shared/interfaces'
+import {StorageName} from '../storage-name'
 
 @Component({
   selector: 'app-todos',
@@ -10,8 +14,9 @@ import {AlertService} from '../shared/services/alert.service'
   styleUrls: ['./todos-page.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class TodosPageComponent implements OnInit {
+export class TodosPageComponent implements OnInit, OnDestroy {
   form: FormGroup
+  loadTodos$: Subscription
 
   todos: ITodos[] | [] = []
 
@@ -21,34 +26,31 @@ export class TodosPageComponent implements OnInit {
 
   constructor(
     private readonly todosService: TodosService,
-    private readonly alertService: AlertService
-  ) {
-  }
+    private readonly alert: AlertService
+  ) {}
 
   ngOnInit(): void {
     this.loadTodos()
-    if (localStorage.getItem('user-theme')) {
-      this.theme = localStorage.getItem('user-theme') as string
+    if (localStorage.getItem(StorageName.Theme)) {
+      this.theme = localStorage.getItem(StorageName.Theme) as string
     }
 
     this.form = new FormGroup({
-      title: new FormControl('', [Validators.required])
+      title: new FormControl('', Validators.required)
     })
   }
 
   loadTodos() {
     this.loading = true
-    return this.todosService.getAll().subscribe((todos: ITodos[]) => {
+    this.loadTodos$ = this.todosService.getAll().subscribe((todos: ITodos[]) => {
       this.loading = false
       this.todos = todos
-    }, () => {
-      this.alertService.danger()
     })
   }
 
   confirm(todo) {
     return this.todosService.update(todo).subscribe(() => {
-      this.alertService.success('Успешно Завершено')
+      this.alert.success('Успешно Завершено')
     }, () => {
     }, () => {
       this.loadTodos()
@@ -57,9 +59,9 @@ export class TodosPageComponent implements OnInit {
 
   remove(id: string) {
     return this.todosService.remove(id).subscribe(() => {
-      return this.alertService.success('Успешно удалено')
+      return this.alert.success('Успешно удалено')
     }, () => {
-      this.alertService.danger()
+      this.alert.danger()
     }, () => {
       this.loadTodos()
     })
@@ -73,7 +75,7 @@ export class TodosPageComponent implements OnInit {
     this.disabled = true
     const title = String(this.form.value.title)
     if (!title.trim() || title.trim() === 'null') {
-      this.alertService.danger('Пустое поле "Todo"')
+      this.alert.danger('Пустое поле "Todo"')
       this.disabled = false
       return
     }
@@ -85,14 +87,21 @@ export class TodosPageComponent implements OnInit {
     }
 
     this.todosService.create(data).subscribe(() => {
-      this.disabled = false
       this.form.reset()
-      this.alertService.success('Успешно добавлено!')
+      this.alert.success('Успешно добавлено!')
+      this.disabled = false
     }, () => {
       this.form.reset()
-      this.alertService.danger()
+      this.alert.danger()
+      this.disabled = false
     }, () => {
       this.loadTodos()
     })
+  }
+
+  ngOnDestroy(): void {
+    if (this.loadTodos$) {
+      this.loadTodos$.unsubscribe()
+    }
   }
 }

@@ -8,7 +8,6 @@ import {AppComponent} from './app.component'
 import {TodosPageComponent} from './todos/todos-page.component'
 import {LoaderComponent} from './shared/components/loader/loader.component'
 import {ToggleThemeComponent} from './shared/components/toggle-theme/toggle-theme.component'
-import {AlertComponent} from './shared/components/alert/alert.component'
 import {TodosListComponent} from './todos/todos-list/todos-list.component'
 import {MainLayoutComponent} from './shared/components/main-layout/main-layout.component'
 import {ErrorPageComponent} from './error-page/error-page.component'
@@ -25,7 +24,6 @@ registerLocaleData(ruLocale)
     AppComponent,
     TodosPageComponent,
     LoaderComponent,
-    AlertComponent,
     ToggleThemeComponent,
     FindTodoPipe,
     TodosListComponent,
