@@ -1,44 +1,39 @@
 @import 'src/assets/scss/var';
 
 header {
-  width: 100%;
+  background: $primary;
   height: $header-size;
-  background: $main-color;
 }
 
 .navbar {
   display: flex;
-
-  ul {
-    width: 100%;
-    padding: 0 20px;
-    display: flex;
-    height: $header-size;
-    align-items: center;
-    justify-content: space-between;
-
-    .items {
-      display: flex;
-    }
-  }
-
-  li {
-    a {
-      color: #fff;
-      &.active {
-        color: #cccccc;
-      }
-    }
-
-    &:not(.logo) {
-      margin-right: 10px;
-    }
-  }
+  align-items: center;
+  width: 98%;
+  justify-content: space-between;
+  height: $header-size;
 }
 
-.logo {
-  width: 100%;
-  img {
-    width: 25px;
+.list {
+  display: flex;
+  align-items: center;
+}
+
+.item {
+  margin-left: 10px;
+
+  a, button {
+    color: #fff;
+    background: none;
+    &.active {
+      color: #ccc;
+    }
+  }
+
+  &.logo {
+    width: 100%;
+    img {
+      width: 25px;
+      object-fit: cover;
+    }
   }
 }

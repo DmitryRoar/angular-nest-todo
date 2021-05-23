@@ -11,8 +11,11 @@ export class Auth {
   @Prop({required: true})
   password: string
 
-  @Prop()
+  @Prop({required: true})
   date: string
+
+  @Prop({required: true})
+  role: string
 }
 
 export const AuthSchema = SchemaFactory.createForClass(Auth)

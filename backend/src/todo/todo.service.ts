@@ -17,6 +17,10 @@ export class TodoService {
   constructor(@InjectModel(Todo.name) private todoModal: Model<TodoDocument>) {
   }
 
+  async getTodosLength(): Promise<number> {
+    return await this.todoModal.countDocuments()
+  }
+
   async getAll(session: ITodoSession): Promise<ITodos[] | undefined> {
     const candidate: IUser = session.user
 
@@ -30,7 +34,7 @@ export class TodoService {
   async create(session: ITodoSession, todo: CreateTodoDto): Promise<Todo> {
     const data = {
       ...todo,
-      owner: session.user._id
+      owner: session.user._id,
     }
     const newTodo = await new this.todoModal(data)
     return await newTodo.save()

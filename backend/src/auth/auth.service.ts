@@ -10,7 +10,7 @@ import {Auth, AuthDocument} from './schemas/auth.schema'
 
 import {CreateUserDto} from './dto/create-user.dto'
 import {LoginUserDto} from './dto/login-user.dto'
-import {ILogin, IUser} from '../interfaces/auth.interface'
+import {ILogin} from '../interfaces/auth.interface'
 import {ITodoSession} from '../interfaces/todo.interface'
 
 @Injectable()
@@ -21,6 +21,14 @@ export class AuthService {
   ) {
   }
 
+  async getUsersLength(): Promise<number> {
+    return await this.authModel.countDocuments()
+  }
+
+  getAllUsers() {
+    return this.authModel.find()
+  }
+
   async signUp(createDto: CreateUserDto): Promise<Auth> {
     const candidate = await this.authModel.findOne({email: createDto.email})
     if (candidate) {
@@ -29,7 +37,8 @@ export class AuthService {
     const data = {
       ...createDto,
       password: await hash(createDto.password, 10),
-      date: new Date().toLocaleDateString()
+      date: new Date().toLocaleDateString(),
+      rule: createDto.role.toLowerCase()
     }
     const user = await new this.authModel(data)
     return await user.save()
@@ -55,7 +64,7 @@ export class AuthService {
       session.user = candidate
       await candidate.save()
 
-      return {token}
+      return {token, email: candidate.email, role: candidate.role}
     }
 
     throw new HttpException('Пользователь не найден', HttpStatus.FORBIDDEN)

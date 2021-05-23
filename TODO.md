@@ -5,4 +5,4 @@
 # Main Panel
 * ~~switch theme and save state~~ 
 * ~~remove & changes user todos~~
-* Authenticated/Register Logic
+* ~~Authenticated/Register Logic~~

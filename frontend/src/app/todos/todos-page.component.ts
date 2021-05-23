@@ -7,12 +7,12 @@ import {AlertService} from '../shared/services/alert.service'
 
 import {ITodos} from '../shared/interfaces'
 import {StorageName} from '../storage-name'
+import {ActivatedRoute, Params} from '@angular/router'
 
 @Component({
   selector: 'app-todos',
   templateUrl: './todos-page.component.html',
-  styleUrls: ['./todos-page.component.scss'],
-  encapsulation: ViewEncapsulation.None
+  styleUrls: ['./todos-page.component.scss']
 })
 export class TodosPageComponent implements OnInit, OnDestroy {
   form: FormGroup
@@ -26,6 +26,7 @@ export class TodosPageComponent implements OnInit, OnDestroy {
 
   constructor(
     private readonly todosService: TodosService,
+    private route: ActivatedRoute,
     private readonly alert: AlertService
   ) {}
 
@@ -34,6 +35,12 @@ export class TodosPageComponent implements OnInit, OnDestroy {
     if (localStorage.getItem(StorageName.Theme)) {
       this.theme = localStorage.getItem(StorageName.Theme) as string
     }
+
+    this.route.queryParams.subscribe((params: Params) => {
+      if (params.notAdmin) {
+        this.alert.warning('Недостаточно прав')
+      }
+    })
 
     this.form = new FormGroup({
       title: new FormControl('', Validators.required)

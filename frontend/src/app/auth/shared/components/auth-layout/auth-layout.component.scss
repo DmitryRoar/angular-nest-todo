@@ -19,14 +19,14 @@
 
   input {
     padding: 8px 30px 8px 10px;
-    border: 2px solid $main-color;
+    border: 2px solid $primary;
     border-radius: 10px;
     font-size: 1.2rem;
   }
 
   &.error {
     input {
-      border: 2px solid $disabled-color;
+      border: 2px solid $warn;
     }
   }
 }
@@ -38,7 +38,7 @@
 
 :host ::ng-deep form {
   button[type="submit"] {
-    background: $main-color;
+    background: $primary;
     color: #fff;
     padding: 10px 0;
     margin-top: 20px;
@@ -46,7 +46,7 @@
     transition: .4s;
 
     &:disabled {
-      background: $disabled-color;
+      background: $warn;
       cursor: not-allowed;
     }
   }

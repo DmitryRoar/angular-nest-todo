@@ -44,8 +44,9 @@ export class LoginComponent implements OnInit {
     const {email, password} = this.form.value
 
     this.auth.login({email, password}).subscribe((data: ILogin) => {
-      this.router.navigate(['/'])
       localStorage.setItem(StorageName.Token, data.token)
+      localStorage.setItem(StorageName.Data, JSON.stringify({email: data.email, role: data.role}))
+      this.router.navigate(['/'])
       this.disabled = false
     }, () => {
       this.disabled = false

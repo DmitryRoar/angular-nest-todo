@@ -1,7 +1,8 @@
 import {Injectable} from '@angular/core'
 import {HttpClient, HttpErrorResponse} from '@angular/common/http'
+import {Router} from '@angular/router'
 import {Observable, throwError} from 'rxjs'
-import {catchError} from 'rxjs/operators'
+import {catchError, tap} from 'rxjs/operators'
 
 import {AlertService} from '../../../shared/services/alert.service'
 
@@ -11,7 +12,8 @@ import {ILogin, IUser} from '../interfaces'
 export class AuthService {
   constructor(
     private http: HttpClient,
-    private alert: AlertService
+    private alert: AlertService,
+    private router: Router
   ) {}
 
   signUp(data: IUser): Observable<IUser> {
@@ -27,9 +29,14 @@ export class AuthService {
 
   logout(): Observable<void> {
     return this.http.get<void>(`/api/auth/logout`)
+      .pipe(
+        tap(() => {
+          this.router.navigate(['/auth', 'login'])
+        })
+      )
   }
 
-  private errorHandler(error: HttpErrorResponse) {
+  private errorHandler(error: HttpErrorResponse): Observable<never> {
     const status = error.error.statusCode
 
     switch (status) {

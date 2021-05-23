@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core'
 import {FormControl, FormGroup, Validators} from '@angular/forms'
 import {Router} from '@angular/router'
 
 import {AlertService} from '../../shared/services/alert.service'
 import {AuthService} from '../shared/services/auth.service'
+
 import {IUser} from '../shared/interfaces'
 
 @Component({
@@ -21,7 +22,8 @@ export class SignupComponent implements OnInit {
     readonly alert: AlertService,
     readonly auth: AuthService,
     readonly router: Router
-  ) {}
+  ) {
+  }
 
   ngOnInit(): void {
     const passwordValidation = [
@@ -51,7 +53,8 @@ export class SignupComponent implements OnInit {
 
     const user: IUser = {
       email,
-      password
+      password,
+      role: 'user'
     }
 
     return this.auth.signUp(user).subscribe(() => {

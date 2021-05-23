@@ -1,7 +1,8 @@
-import {ITodos} from './general.interface'
 
 export interface ILogin {
   token: string
+  email: string
+  role: string
 }
 
 export interface IUser {

@@ -1,12 +1,12 @@
 import {NgModule} from '@angular/core'
 import {HttpClientModule} from '@angular/common/http'
 import {FormsModule, ReactiveFormsModule} from '@angular/forms'
-import {RouterModule} from '@angular/router'
 import {CommonModule} from '@angular/common'
+import {RouterModule} from '@angular/router'
 
-import {NavbarComponent} from './shared/components/navbar/navbar.component'
-import {AlertComponent} from './shared/components/alert/alert.component'
-import {AlertService} from './shared/services/alert.service'
+import {NavbarComponent} from './components/navbar/navbar.component'
+import {AlertComponent} from './components/alert/alert.component'
+import {AlertService} from './services/alert.service'
 
 @NgModule({
   declarations: [
@@ -22,12 +22,12 @@ import {AlertService} from './shared/services/alert.service'
   ],
   providers: [AlertService],
   exports: [
+    CommonModule,
     HttpClientModule,
-    RouterModule,
     FormsModule,
     ReactiveFormsModule,
     NavbarComponent,
     AlertComponent
   ]
 })
-export class GeneralModule {}
+export class SharedModule {}

@@ -2,7 +2,7 @@ import {NgModule} from '@angular/core'
 import {BrowserModule} from '@angular/platform-browser'
 import {AppRoutingModule} from './app-routing.module'
 import {AuthModule} from './auth/auth.module'
-import {GeneralModule} from './general.module'
+import {SharedModule} from './shared/shared.module'
 
 import {AppComponent} from './app.component'
 import {TodosPageComponent} from './todos/todos-page.component'
@@ -15,7 +15,7 @@ import {ErrorPageComponent} from './error-page/error-page.component'
 import {FindTodoPipe} from './shared/pipes/find-todo.pipe'
 
 import {registerLocaleData} from '@angular/common'
-import ruLocale from '@angular/common/locales/ru'
+import ruLocale from '@angular/common/locales/ru';
 
 registerLocaleData(ruLocale)
 
@@ -34,7 +34,7 @@ registerLocaleData(ruLocale)
     BrowserModule,
     AuthModule,
     AppRoutingModule,
-    GeneralModule
+    SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent]

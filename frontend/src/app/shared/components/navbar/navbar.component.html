@@ -1,34 +1,50 @@
 <header>
   <nav class="navbar">
-    <ul>
-      <div>
-        <li class="logo">
-          <a routerLink="/" class="logo__a">
-            <img src="assets/img/logo.png" alt="">
-          </a>
-        </li>
-      </div>
-      <div *ngIf="isAuth; else notAuth">
-        <li>
-          <a
-            routerLink="/auth/login"
+    <a
+      routerLink="/"
+      class="logo item"
+    >
+      <img src="/assets/img/logo.png" alt="logo">
+    </a>
+
+    <ul class="list">
+      <ng-container *ngIf="isAuth; else notAuth">
+        <ng-container *ngIf="data.role === 'admin'">
+          <li class="item">
+            <a
+              routerLink="/admin/dashboard"
+              routerLinkActive="active"
+            >
+              Панель
+            </a>
+          </li>
+        </ng-container>
+        <li class="item">
+          <button
             (click)="logout()"
           >
             Выйти
+          </button>
+        </li>
+      </ng-container>
+      <ng-template #notAuth>
+        <li class="item">
+          <a
+            routerLink="/auth/login"
+            routerLinkActive="active"
+          >
+            Авторизоваться
           </a>
         </li>
-      </div>
+        <li class="item">
+          <a
+            routerLink="/auth/sign-up"
+            routerLinkActive="active"
+          >
+            Зарегистрироваться
+          </a>
+        </li>
+      </ng-template>
     </ul>
-
-    <ng-template #notAuth>
-      <div class="items">
-        <li>
-          <a routerLink="/auth/login" routerLinkActive="active">Авторизоваться</a>
-        </li>
-        <li>
-          <a routerLink="/auth/sign-up" routerLinkActive="active">Зарегистрироваться</a>
-        </li>
-      </div>
-    </ng-template>
   </nav>
 </header>
